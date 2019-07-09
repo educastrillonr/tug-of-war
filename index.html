@@ -9,11 +9,13 @@
       * {
         padding: 0;
         margin: 0;
+        box-sizing: border-box;
       }
 
       body {
         height: 100vh;
         width: 100vw;
+        background: rgba(82, 78, 78, 0.986);
       }
 
       main {
@@ -27,7 +29,8 @@
       #divider {
         height: 100%;
         width: 10px;
-        background: black;
+        background: white;
+        border: black 2px solid;
       }
 
       .player {
@@ -50,20 +53,24 @@
         position: fixed;
         width: 35%;
         height: 5px;
-        background: black;
+        background: brown;
+        border: black 2px solid;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        transition: .3s;
       }
       #scores {
         position: absolute;
         font-size: 1.5rem;
+        color: white;
         left: 1%;
         top: 85%;
       }
 
       #red {
         position: absolute;
+        color: white;
         font-size: 1.5rem;
         left: 1%;
         top: 90%;
@@ -71,6 +78,7 @@
 
       #blue {
         position: absolute;
+        color: white;
         font-size: 1.5rem;
         left: 1%;
         top: 95%;
@@ -114,9 +122,9 @@
       let key = event.key;
 
       if (key == "ArrowLeft") {
-        ropePosition -= 1;
+        ropePosition -= 3;
       } else if (key == "ArrowRight") {
-        ropePosition += 1;
+        ropePosition += 3;
       }
       win();
     };
