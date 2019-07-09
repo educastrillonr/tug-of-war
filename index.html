@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="stylesheet" href="main.css" /> -->
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        height: 100vh;
+        width: 100vw;
+      }
+
+      main {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      #divider {
+        height: 100%;
+        width: 10px;
+        background: black;
+      }
+
+      .player {
+        width: 100px;
+        height: 100px;
+        border: 2px black solid;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      #player-one {
+        background: red;
+      }
+
+      #player-two {
+        background: blue;
+      }
+
+      #rope {
+        position: fixed;
+        width: 35%;
+        height: 5px;
+        background: black;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #scores {
+        position: absolute;
+        font-size: 1.5rem;
+        left: 1%;
+        top: 85%;
+      }
+
+      #red {
+        position: absolute;
+        font-size: 1.5rem;
+        left: 1%;
+        top: 90%;
+      }
+
+      #blue {
+        position: absolute;
+        font-size: 1.5rem;
+        left: 1%;
+        top: 95%;
+      }
+
+      @media only screen and (max-width: 768px) {
+        .player {
+          width: 50px;
+          height: 50px;
+        }
+        main {
+          justify-content: space-between;
+        }
+      }
+    </style>
+    <title>Tug Of War</title>
+  </head>
+  <body>
+    <main>
+      <div id="player-one" class="player"></div>
+      <div id="divider"></div>
+      <div id="player-two" class="player"></div>
+      <div id="rope"></div>
+      <p id="scores">Scoreboard:</p>
+      <p id="red">Red: 0</p>
+      <p id="blue">Blue: 0</p>
+    </main>
+  </body>
+  <!-- <script src="main.js"></script> -->
+  <script>
+    let ropePosition = 50;
+    let rope = document.getElementById("rope");
+    let red = document.getElementById("red");
+    let blue = document.getElementById("blue");
+    let redPlayer = document.getElementById("player-one");
+    let bluePlayer = document.getElementById("player-two");
+    let redWin = 0;
+    let blueWin = 0;
+
+    window.onkeyup = event => {
+      let key = event.key;
+
+      if (key == "ArrowLeft") {
+        ropePosition -= 1;
+      } else if (key == "ArrowRight") {
+        ropePosition += 1;
+      }
+      win();
+    };
+
+    const win = () => {
+      if (ropePosition >= 69) {
+        alert("Blue Wins!");
+        ropePosition = 50;
+        blueWin++;
+        blue.innerHTML = "Blue: " + blueWin;
+      } else if (ropePosition <= 31) {
+        alert("Red Wins!");
+        ropePosition = 50;
+        redWin++;
+        red.innerHTML = "Red: " + redWin;
+      }
+      rope.style.left = ropePosition + "%";
+    };
+
+    redPlayer.addEventListener("click", function() {
+      ropePosition -= 1;
+      win();
+    });
+
+    bluePlayer.addEventListener("click", function() {
+      ropePosition += 1;
+      win();
+    });
+  </script>
+</html>
